@@ -1,0 +1,48 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agentic Commerce Bot</title>
+  <style>
+    body { max-width: 900px; margin: 40px auto; font-family: system-ui, sans-serif; }
+    .card { border: 1px solid #ddd; border-radius: 12px; padding: 16px; margin-bottom: 20px; }
+    button { padding: 8px 14px; border-radius: 8px; border: 1px solid #999; cursor: pointer; }
+    #log { white-space: pre-wrap; border:1px solid #eee; padding:10px; border-radius:8px; min-height:120px }
+    input { padding:8px; }
+  </style>
+</head>
+<body>
+  <h1>Agentic Commerce Bot</h1>
+  <div class="card">
+    <h3>Try product lookup</h3>
+    <p>Examples: "price for SKU123" / "מלאי ל-Running Shoes" / "what's your returns policy?"</p>
+    <div>
+      <input id="msg" style="width:70%" placeholder="Type message..." />
+      <button id="send">Send</button>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Response</h3>
+    <div id="log"></div>
+  </div>
+  <script>
+    const send = document.getElementById('send');
+    const msg = document.getElementById('msg');
+    const log = document.getElementById('log');
+    send.onclick = async () => {
+      const m = msg.value.trim();
+      if (!m) return;
+      log.textContent = 'Thinking...';
+      const r = await fetch('/api/chat', {
+        method:'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: m })
+      });
+      const j = await r.json();
+      log.textContent = j.reply || j.error || 'Error';
+    };
+  </script>
+</body>
+</html>
