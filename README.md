@@ -1,13 +1,33 @@
 
-# Agentic Commerce Bot
+---
 
-Minimal customer-support bot with naive tool-like behavior:
-- Looks up products by SKU/name (mock DB)
-- Answers shipping/returns via LLM
-- Falls back to polite chat
+## 🛍️ 2. `agentic-commerce-bot`
 
-## Quickstart
-1. Node 18+
-2. `.env` from `.env.example` with `OPENAI_API_KEY`
-3. `npm i && npm start`
-4. Open http://localhost:3002
+```markdown
+# 🛍️ Agentic-Commerce-Bot
+
+AI customer support bot for online stores. Can answer product FAQs and call APIs for order/shipping details.
+
+## ✨ Features
+- FAQ answering (returns, shipping times, stock availability)
+- Agentic workflow: LLM + Tools
+- Example integration with mock REST API
+- Extensible for Shopify, Magento, WooCommerce
+
+## 🛠 Tech Stack
+- Node.js + Express
+- LangChain Agents + Tools
+- HuggingFace / OpenAI (LLM)
+
+## 🚀 Getting Started
+
+```bash
+git clone https://github.com/your-username/agentic-commerce-bot.git
+cd agentic-commerce-bot
+
+npm install
+
+# create .env
+echo "HUGGINGFACEHUB_API_KEY=hf_xxxxxxxx" > .env
+
+npm start
